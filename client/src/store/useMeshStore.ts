@@ -102,29 +102,42 @@ export const useMeshStore = create<MeshState>((set) => ({
     };
 
     network.onTopologyChange = (topologyMap) => {
-      const nodesMap = new Set<string>();
-      const links: GraphLink[] = [];
-      
-      topologyMap.forEach((peers, nodeId) => {
-        nodesMap.add(nodeId);
-        peers.forEach(peer => {
-          nodesMap.add(peer);
-          // Prevent bi-directional duplicates in D3
-          const linkId1 = `${nodeId}-${peer}`;
-          const linkId2 = `${peer}-${nodeId}`;
-          if (!links.some(l => `${l.source}-${l.target}` === linkId1 || `${l.source}-${l.target}` === linkId2)) {
-            links.push({ source: nodeId, target: peer });
-          }
+      set((state) => {
+        const currentNodes = state.graphData.nodes;
+        
+        const nodesMap = new Set<string>();
+        const links: GraphLink[] = [];
+        
+        topologyMap.forEach((peers, nodeId) => {
+          nodesMap.add(nodeId);
+          peers.forEach(peer => {
+            nodesMap.add(peer);
+            // Prevent bi-directional duplicates in D3
+            const linkId1 = `${nodeId}-${peer}`;
+            const linkId2 = `${peer}-${nodeId}`;
+            if (!links.some(l => {
+              const srcId = typeof l.source === 'object' ? (l.source as any).id || l.source : l.source;
+              const tgtId = typeof l.target === 'object' ? (l.target as any).id || l.target : l.target;
+              return `${srcId}-${tgtId}` === linkId1 || `${srcId}-${tgtId}` === linkId2;
+            })) {
+              links.push({ source: nodeId, target: peer });
+            }
+          });
         });
+
+        const newNodes: GraphNode[] = Array.from(nodesMap).map(id => {
+          const existingNode = currentNodes.find(n => n.id === id);
+          if (existingNode) return existingNode; // Keep reference to maintain d3 internal state
+
+          return {
+            id,
+            isSelf: id === network.nodeId,
+            group: id === network.nodeId ? 1 : 2
+          };
+        });
+
+        return { graphData: { nodes: newNodes, links } };
       });
-
-      const nodes: GraphNode[] = Array.from(nodesMap).map(id => ({
-        id,
-        isSelf: id === network.nodeId,
-        group: id === network.nodeId ? 1 : 2
-      }));
-
-      set({ graphData: { nodes, links } });
     };
 
     network.connectToSignaling('ws://localhost:3001');

@@ -40,12 +40,12 @@ export const NetworkGraph: React.FC = () => {
   }, [messages]);
 
   useEffect(() => {
-    // Re-center graph gently when data changes
+    // Re-center graph gently when data changes, without aggressive re-zooming on every node add
     if (fgRef.current) {
       fgRef.current.d3Force('charge')?.strength(-300);
-      fgRef.current.zoom(1.5, 1000);
+      fgRef.current.d3ReheatSimulation();
     }
-  }, [graphData.nodes.length]);
+  }, [graphData.nodes.length, graphData.links.length]);
 
   return (
     <div ref={containerRef} className="w-full h-full bg-black relative rounded-xl border border-neutral-800/60 overflow-hidden shadow-2xl">
@@ -84,6 +84,7 @@ export const NetworkGraph: React.FC = () => {
           enablePanInteraction={true}
           backgroundColor="rgba(0,0,0,0)"
           d3AlphaDecay={0.02}
+          d3VelocityDecay={0.4}
           onNodeClick={() => { /* Could implement node-specific details */ }}
           nodeCanvasObject={(node: any, ctx, globalScale) => {
             // Advanced cyber node rendering

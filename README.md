@@ -34,3 +34,23 @@ To actually see the mesh network working, you **must open multiple browser tabs*
 3. Open a **second** and **third** tab to the exact same URL. 
 
 The nodes will automatically discover each other through the signaling server and construct WebRTC P2P Data Channels. You will see the Force Graph construct itself, and you can test sending messages between tabs to observe the red data packets traversing the graph!
+
+## Screenshots
+
+Below is a visual overview of the Silent Network interface and features:
+
+### 1. Initial State (Idle)
+The system searching for peers before a connection is established.
+![Initial State - Idle](./screenshots/1-idle-state.png)
+
+### 2. Manual Air-Gapped Sync
+Establishing a connection entirely offline using a QR code and Base64 SDP strings.
+![Manual Air-Gapped Connection](./screenshots/2-manual-connect.png)
+
+### 3. P2P Link Established & Packet Inspection
+Two nodes connected with active protocol analysis and data packet transmission.
+![Active P2P Link](./screenshots/3-p2p-established.png)
+
+### 4. Mesh Network Topology
+A multi-node tactical mesh mapping real-time connections and message cascades.
+![Mesh Topology Visualization](./screenshots/4-mesh-topology.png)
