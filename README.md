@@ -57,6 +57,29 @@ Messages propagate across the network using controlled routing mechanisms, ensur
 
 ---
 
+## Current Limitations
+
+- Not fully decentralized yet – initial peer discovery depends on a signaling server  
+- Performance may degrade as node count increases (mesh scaling challenges)  
+- Visual instability can occur during rapid topology updates  
+- Manual/QR-based connection flow needs better UX  
+- No complete end-to-end encryption at the application layer yet  
+- Limited to browser-based WebRTC constraints (NAT traversal, device compatibility)  
+
+---
+
+## Future Improvements
+
+- Fully decentralized peer discovery (removal of signaling dependency)  
+- End-to-End Encryption (E2EE) with secure key exchange  
+- Improved routing algorithms for large-scale mesh networks  
+- Bluetooth / local hardware-based peer discovery  
+- File and media transfer over mesh (chunked transmission)  
+- Advanced anonymity layers and routing obfuscation ("phantom routing")  
+- Performance optimization for high node density environments  
+
+---
+
 ## Getting Started
 
 ### Prerequisites
