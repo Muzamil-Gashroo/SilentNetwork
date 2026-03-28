@@ -50,7 +50,7 @@ Messages propagate across the network using controlled routing mechanisms, ensur
 
 1. A node connects to the signaling server for peer discovery  
 2. WebRTC handshake establishes direct P2P connections  
-3. DataChannels open → network becomes fully decentralized  
+3. DataChannels open → network becomes largely decentralized  
 4. Messages propagate across nodes using controlled flooding (TTL)  
 5. Nodes track seen messages to prevent duplication  
 6. Network dynamically adapts as nodes join/leave  
