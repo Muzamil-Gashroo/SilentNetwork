@@ -41,16 +41,28 @@ Below is a visual overview of the Silent Network interface and features:
 
 ### 1. Initial State (Idle)
 The system searching for peers before a connection is established.
-![Initial State - Idle](./screenshots/1-idle-state.png)
+![Initial State - Idle](./screenshots/screenshot-1.png)
 
 ### 2. Manual Air-Gapped Sync
 Establishing a connection entirely offline using a QR code and Base64 SDP strings.
-![Manual Air-Gapped Connection](./screenshots/2-manual-connect.png)
+![Manual Air-Gapped Connection](./screenshots/screenshot-2.png)
 
 ### 3. P2P Link Established & Packet Inspection
 Two nodes connected with active protocol analysis and data packet transmission.
-![Active P2P Link](./screenshots/3-p2p-established.png)
+![Active P2P Link](./screenshots/screenshot-3.png)
 
 ### 4. Mesh Network Topology
 A multi-node tactical mesh mapping real-time connections and message cascades.
-![Mesh Topology Visualization](./screenshots/4-mesh-topology.png)
+![Mesh Topology Visualization](./screenshots/screenshot-4.png)
+
+### 5. Multi-Peer Communication
+Scaling the mesh dynamically with incoming peers.
+![Multi Peer Communication](./screenshots/screenshot-5.png)
+
+### 6. Topology Update
+System adapting as connections fluctuate.
+![Topology Update](./screenshots/screenshot-6.png)
+
+### 7. Global Node Map
+The unified picture of the operational mesh.
+![Global Topology](./screenshots/screenshot-7.png)
