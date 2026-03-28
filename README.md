@@ -1,16 +1,72 @@
-# Silent Network - Resilient Offline Communication
+# Silent Network
 
-A full-stack prototype of a decentralized, peer-to-peer mesh messaging system designed for austere and low-connectivity environments.
+A decentralized, peer-to-peer mesh communication system that enables devices to exchange messages without internet or central servers. Designed for low-connectivity, restricted, or fully offline environments, Silent Network forms a self-sustaining communication layer using direct device-to-device connections.
 
-## How to Start and Run the Project
+---
 
-This project uses a single command to concurrently run both the Node.js Signaling Server and the React (Vite) Client Application.
+## Overview
+
+Silent Network reimagines communication using a Web3-inspired, decentralized approach. Instead of relying on traditional infrastructure like ISPs or centralized servers, each device becomes both a user and a relay node, forming a dynamic mesh network.
+
+Messages propagate across the network using controlled routing mechanisms, ensuring communication remains active even when connectivity is unreliable or unavailable.
+
+---
+
+## Key Features
+
+- Decentralized Mesh Networking – No central server dependency after initial connection  
+- WebRTC Data Channels – Secure, low-latency peer-to-peer communication  
+- Self-Healing Network – Automatically reroutes messages when nodes disconnect  
+- Real-Time Topology Visualization – Interactive graph showing nodes and message flow  
+- Air-Gapped Connectivity – Offline peer connection using Base64 SDP exchange  
+- QR-Based Peer Sync – Connect devices by scanning QR codes without internet  
+- Custom Routing Protocol – TTL-based propagation with deduplication to prevent loops  
+- Network Telemetry Logs – Live system-level activity tracking  
+
+---
+
+## Tech Stack
+
+**Frontend**
+- React (Vite)
+- Zustand (State Management)
+- react-force-graph-2d (D3-based visualization)
+- TailwindCSS
+
+**Backend (Signaling Only)**
+- Node.js
+- Express
+- WebSocket (`ws`)
+
+**Core Technologies**
+- WebRTC (RTCPeerConnection, RTCDataChannel)
+- SDP & ICE Candidate Exchange
+- Gossip-based Mesh Routing
+- Cryptographic Message Identification (UUID + Deduplication)
+
+---
+
+## How It Works
+
+1. A node connects to the signaling server for peer discovery  
+2. WebRTC handshake establishes direct P2P connections  
+3. DataChannels open → network becomes fully decentralized  
+4. Messages propagate across nodes using controlled flooding (TTL)  
+5. Nodes track seen messages to prevent duplication  
+6. Network dynamically adapts as nodes join/leave  
+
+---
+
+## Getting Started
 
 ### Prerequisites
-Make sure you have Node.js and NPM installed.
+- Node.js
+- npm
+
+---
 
 ### 1. Install Dependencies
-Open your terminal in the root folder (`a:\abc\project`) and run the master install script:
+
 ```bash
 npm run install:all
 ```
